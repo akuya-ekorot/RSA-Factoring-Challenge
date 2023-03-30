@@ -1,15 +1,23 @@
 #!/usr/bin/python3
 import sys
+import math
 filename = sys.argv[1]
 
 
 def factors(number):
-    factor = 2
-    while (True):
-        if (number % factor == 0):
-            print("{}={}*{}".format(number, int(number / factor), factor))
-            break
-        factor += 1
+    factors = []
+
+    if number % 2 == 0:
+        factors.append(2)
+        factors.append(number // 2)
+    else:
+        for i in range(3, int(math.sqrt(number)) + 1, 2):
+            if number % i == 0:
+                factors.append(i)
+                factors.append(number // i)
+                break
+
+    print("{}={}*{}".format(number, factors[1], factors[0]))
 
 
 with open(filename, 'r') as file:
