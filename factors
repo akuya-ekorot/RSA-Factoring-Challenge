@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+import sys
+filename = sys.argv[1]
+
+
+def factors(number):
+    factor = 2
+    while (True):
+        if (number % factor == 0):
+            print("{}={}*{}".format(number, int(number / factor), factor))
+            break
+        factor += 1
+
+
+with open(filename, 'r') as file:
+    line = file.readline()
+    i = 1
+    while line:
+        factors(int(line.strip()))
+        line = file.readline()
+        i += 1
