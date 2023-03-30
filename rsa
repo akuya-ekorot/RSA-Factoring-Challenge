@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+import sys
+import math
+filename = sys.argv[1]
+
+
+def factors(number):
+    factors = []
+
+    if number % 2 == 0:
+        factors.append(2)
+        factors.append(number // 2)
+    else:
+        for i in range(3, int(math.sqrt(number)) + 1, 2):
+            if number % i == 0:
+                factors.append(i)
+                factors.append(number // i)
+                break
+
+    print("{}={}*{}".format(number, factors[1], factors[0]))
+
+
+with open(filename, 'r') as file:
+    line = file.readline()
+    i = 1
+    while line:
+        factors(int(line.strip()))
+        line = file.readline()
+        i += 1
